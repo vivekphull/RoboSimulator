@@ -55,6 +55,7 @@ public class Game {
     public static  void ReportLocation(){
         x = Game.x;
         y = Game.y;
+
         System.out.println("The Current Location is : ");
         System.out.print("X  : " + x + " And ");
         System.out.print("Y  : " + y + "And ");
@@ -62,14 +63,11 @@ public class Game {
     }
 
     public static void turnLeft(){
-        System.out.println(newDirection);
-        if (MIN_X < x && x <MAX_X){
-           x= x-1;
-
-        }else
-        {
-            System.out.println("Sorry, this move is not allowed.!");
-        }
+        if (newDirection == 0)
+            newDirection = 3;
+        else
+            newDirection = newDirection +1;
+        System.out.println("\nNew Direction is " + newDirection);
     }
 
     public static void turnRight(){
@@ -81,12 +79,30 @@ public class Game {
             System.out.println("\nNew Direction is " + newDirection);
 
     }
+    public static void moveForward() {
+        x = Game.x;
+        y = Game.y;
+
+        if ((MIN_X < x && x < MAX_X) & (MIN_Y < y && y < MAX_Y)) {
+            if (newDirection == 0) {
+                x = x + 1;
+            } else if (newDirection == 2) {
+                x = x - 1;
+            } else if (newDirection == 1) {
+                y = y + 1;
+            } else if (newDirection == 3) {
+                y = y - 1;
+            }
+        }
+    }
+
 
 
     public static void main(String[] args) {
         startGame();
         playGame();
         turnRight();
+        turnLeft();
     }
 }
 
